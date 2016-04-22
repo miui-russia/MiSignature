@@ -44,7 +44,7 @@ public class SignatureUtils
 		// 把参数通过&连接起来
 		String result = append(vec, "&");
 		// URLDecode
-		result = URLDecoder.decode(result, ENCODING);
+		result = decode(result);
 		return HmacSHA1Encrypt(result, appSecret);
 	}
 
@@ -110,6 +110,19 @@ public class SignatureUtils
 		return sb.toString();
 	}
 
+	public static String decode(String content)
+	{
+		if (null == content || content.isEmpty()) {
+			return "";
+		}
+		try {
+			return URLDecoder.decode(content, ENCODING);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
+	
 	/**
 	 * 使用 HMAC-SHA1 签名方法对对encryptText进行签名
 	 * 

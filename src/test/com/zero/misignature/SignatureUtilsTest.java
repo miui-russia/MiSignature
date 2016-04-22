@@ -66,4 +66,10 @@ public class SignatureUtilsTest
 		
 		assertEquals("", SignatureUtils.append(null, ";"));
 	}
+	
+	@Test
+	public void testDecode()
+	{
+		assertEquals("银子1两", SignatureUtils.decode("%E9%93%B6%E5%AD%901%E4%B8%A4"));
+	}
 }
